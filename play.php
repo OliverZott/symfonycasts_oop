@@ -33,7 +33,6 @@ class Ship {
                 $this->strength,
         );
         }
-
     }
 
     public function doesGivenShipHasMoreStrength($otherShip) {
@@ -58,19 +57,19 @@ function printShipSummary($someShip){
 $myShip1 = new Ship();
 $myShip1->name = 'Jedi Starship';
 $myShip1->weaponPower = 10;
+$myShip1->strength = 51;
+
 
 $myShip2 = new Ship();
 $myShip2->name = 'Imperial Shuttle';
 $myShip2->weaponPower = 5;
-$myShip2->strength = 50;
+$myShip2->strength = 52;
 
 printShipSummary($myShip1);
 printShipSummary($myShip2);
 
-$myShip1->doesGivenShipHasMoreStrength($myShip2);
-
 if ($myShip1->doesGivenShipHasMoreStrength($myShip2)) {
-    echo $myShip1->name . ' has more strength';
-} else {
     echo $myShip2->name . ' has more strength';
+} else {
+    echo $myShip1->name . ' has more strength';
 }
