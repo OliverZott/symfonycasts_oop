@@ -1,10 +1,11 @@
 <?php
 
 class Ship {
-    public $name = 'DefaultName';
-    public $weaponPower = 0;
-    public $jediPower = 0;
-    public $strength = 0;
+
+    public string $name = 'DefaultName';
+    public int $weaponPower = 0;
+    public int $jediPower = 0;
+    public int $strength = 0;
 
     public function sayHello(){
         echo 'Hello';
@@ -40,7 +41,8 @@ class Ship {
     }
 }
 
-function printShipSummary($someShip){
+// Ship type hint in function to give hint what variable-type is!
+function printShipSummary(Ship $someShip){
     echo 'My ships name: ' . $someShip->name;
     echo '<hr>';
     echo $someShip->sayHello();
