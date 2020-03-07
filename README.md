@@ -1,24 +1,28 @@
 OOP
 ===============================================
-[Object Oriented Series](https://knpuniversity.com/screencast/oo)
-from KnpUniversity.
+https://symfonycasts.com/screencast/oo
 
 Setup
 -----
 
-To get this code working, open your favorite terminal application
-and start the built-in web server:
+To start the built-in web server:
 
 ```bash
 cd /path/to/the/project
 php -S localhost:8000
 ```
+Temporary PHP web server now running (press ctrl+c to stop it).
 
-This command will appear to "hang" - but that's perfect! You're
-now running a temporary PHP web server (press ctrl+c to stop it
-when you're done later).
+Open Site:
+```
+http://localhost:8000
+```
 
-Pull up the new site by going to:
+Content
+-------
 
-    http://localhost:8000
+* Type hints with Class name before Argument
+* **__DIR__** to find current path
+  * `__DIR__./path_name/file_name.php`
+
 
