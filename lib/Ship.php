@@ -3,23 +3,26 @@
 class Ship {
 
     private string $name = 'DefaultName';
-    public int $weaponPower = 0;
-    public int $jediPower = 0;
-    public int $strength = 0;
+    private int $weaponPower = 0;
+    private int $jediPower = 0;
+    private  int $strength = 0;
+    private bool $underRepair;
 
-    public function sayHello(){
-        echo 'Hello';
+
+    // Constructor
+    public function __construct($name)
+    {
+        $this->name = $name;
+        $this->underRepair = mt_rand(1,100) < 25;
     }
 
-    public function getName() {
-        return $this->name;
+    public function isFunctional(): bool
+    {
+        return !$this->underRepair;
     }
 
-    public function setName(String $set_name) {
-        $this->name = $set_name;
-    }
-
-    public function getNameAndSpecs($useShortFormat = false){
+    public function getNameAndSpecs($useShortFormat = false)
+    {
         if ($useShortFormat) {
             return sprintf(
                 '%s: %s/%s/%s',
@@ -40,8 +43,64 @@ class Ship {
         }
     }
 
-    public function doesGivenShipHasMoreStrength($otherShip) {
+    public function doesGivenShipHasMoreStrength($otherShip)
+    {
         return $otherShip->weaponPower > $this->weaponPower ;
     }
+
+
+    // -----------------------------------------------------------------------------------------------------------------
+    // Setter and Getter Functions
+    /**
+     * @return int
+     */
+    public function getWeaponPower(): int {
+        return $this->weaponPower;
+    }
+
+    /**
+     * @param int $weaponPower
+     */
+    public function setWeaponPower(int $weaponPower): void {
+        $this->weaponPower = $weaponPower;
+    }
+
+    /**
+     * @return int
+     */
+    public function getJediPower(): int {
+        return $this->jediPower;
+    }
+
+    /**
+     * @param int $jediPower
+     */
+    public function setJediPower(int $jediPower): void {
+        $this->jediPower = $jediPower;
+    }
+
+    public function getName() {
+        return $this->name;
+    }
+
+    public function setName(String $name) {
+        $this->name = $name;
+    }
+
+    public function getStrength(): String {
+        return 16;
+    }
+
+    /* type check not necessary anymore (type hint forces error!)
+    Better: set "int" at property declaration or type-hint in function!
+    */
+    public function setStrength($strength) {
+        if (!is_numeric($strength)) {
+            throw new Exception('WTF dude... Invalid strength argument passed' . $strength . gettype($strength));
+        } else {
+            $this->strength = $strength;
+        }
+    }
+
 }
 
