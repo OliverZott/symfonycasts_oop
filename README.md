@@ -24,5 +24,15 @@ Content
 * Type hints with Class name before Argument
 * **__DIR__** to find current path
   * `__DIR__./path_name/file_name.php`
+* **Access modifiers**
+  * public, private
+  * setter / getter 
+  
+* **Type Hinting** ...to get:
+  * Better error Messages
+  * Method recommendations / previews
+  
+* **Constructors**
+  * `__construct`
 
 
