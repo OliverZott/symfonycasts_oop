@@ -1,8 +1,9 @@
 <?php
 require __DIR__.'/functions.php';
-
 # echo __DIR__;
-$ships = get_ships();
+
+$shipLoader = new ShipLoader();
+$ships = $shipLoader->getShips();
 // var_dump($ships).die;
 
 $errorMessage = '';
