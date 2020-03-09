@@ -1,7 +1,8 @@
 <?php
 require __DIR__.'/functions.php';
 
-$ships = get_ships();
+$shipLoader = new ShipLoader();
+$ships = $shipLoader->getShips();
 
 $ship1Name = isset($_POST['ship1_name']) ? $_POST['ship1_name'] : null;
 $ship1Quantity = isset($_POST['ship1_quantity']) ? $_POST['ship1_quantity'] : 1;
@@ -28,7 +29,8 @@ $ship2 = $ships[$ship2Name];
 
 // var_dump($ship1, $ship2);die;
 
-$outcome = battle($ship1, $ship1Quantity, $ship2, $ship2Quantity);
+$battle = new BattleManager();
+$battleResult = $battle->battle($ship1, $ship1Quantity, $ship2, $ship2Quantity);
 ?>
 
 <html>
@@ -68,21 +70,21 @@ $outcome = battle($ship1, $ship1Quantity, $ship2, $ship2Quantity);
             <div class="result-box center-block">
                 <h3 class="text-center audiowide">
                     Winner:
-                    <?php if ($outcome['winning_ship']): ?>
-                        <?php echo $outcome['winning_ship']->getName(); ?>
+                    <?php if ($battleResult->getWinningShip()): ?>
+                        <?php echo $battleResult->getWinningShip()->getName(); ?>
                     <?php else: ?>
                         Nobody
                     <?php endif; ?>
                 </h3>
                 <p class="text-center">
-                    <?php if ($outcome['winning_ship'] == null): ?>
+                    <?php if ($battleResult->getWinningShip()== null): ?>
                         Both ships destroyed each other in an epic battle to the end.
                     <?php else: ?>
-                        The <?php echo $outcome['winning_ship']->getName(); ?>
-                        <?php if ($outcome['used_jedi_powers']): ?>
+                        The <?php echo $battleResult->getWinningShip()->getName(); ?>
+                        <?php if ($battleResult->isUsedJediPowers()): ?>
                             used its Jedi Powers for a stunning victory!
                         <?php else: ?>
-                            overpowered and destroyed the <?php echo $outcome['losing_ship']->getName() ?>s
+                            overpowered and destroyed the <?php echo $battleResult->getLosingShip()->getName() ?>s
                         <?php endif; ?>
                     <?php endif; ?>
                 </p>
