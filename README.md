@@ -5,20 +5,18 @@ https://symfonycasts.com/screencast/oo
 Setup
 -----
 
-To start the built-in web server:
+Start the built-in web server and open site
 
 ```bash
 cd /path/to/the/project
 php -S localhost:8000
 ```
-Temporary PHP web server now running (press ctrl+c to stop it).
 
-Open Site:
 ```
 http://localhost:8000
 ```
 
-Content
+Content - Course 1
 -------
 
 * Type hints with Class name before Argument
@@ -34,5 +32,32 @@ Content
   
 * **Constructors**
   * `__construct`
+
+**Summary:** Create Class if...
+   + ...store data
+   + ...need function to do stuff
+
+
+Content - Course 2
+-------
+* **Service Classes** (e.g. 'BattleManager')
+    * store services for classes 
+    * are classes themselves
+    * avoid "flat functions"!
+  
+*  Create Class if **passing around associative array of data**
+    * Class for return values of battle outcome
+
+
+
+
+
+
+
+
+
+
+
+
 
 
