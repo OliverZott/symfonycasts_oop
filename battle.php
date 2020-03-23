@@ -30,7 +30,9 @@ $ship2 = $ships[$ship2Name];
 // var_dump($ship1, $ship2);die;
 
 $battle = new BattleManager();
+// "BattleManager"-object returns "BattleResult"-object
 $battleResult = $battle->battle($ship1, $ship1Quantity, $ship2, $ship2Quantity);
+// due to
 ?>
 
 <html>
@@ -70,21 +72,26 @@ $battleResult = $battle->battle($ship1, $ship1Quantity, $ship2, $ship2Quantity);
             <div class="result-box center-block">
                 <h3 class="text-center audiowide">
                     Winner:
-                    <?php if ($battleResult->getWinningShip()): ?>
+                    <?php if ($battleResult->isThereAWinner()): ?>
                         <?php echo $battleResult->getWinningShip()->getName(); ?>
                     <?php else: ?>
                         Nobody
                     <?php endif; ?>
                 </h3>
                 <p class="text-center">
-                    <?php if ($battleResult->getWinningShip()== null): ?>
+                    <?php if (!$battleResult->isThereAWinner()): ?>
                         Both ships destroyed each other in an epic battle to the end.
                     <?php else: ?>
                         The <?php echo $battleResult->getWinningShip()->getName(); ?>
                         <?php if ($battleResult->isUsedJediPowers()): ?>
-                            used its Jedi Powers for a stunning victory!
+                            used its Jedi Powers for a stunning victory and has
+                        <?php echo $battleResult->getWinningShipHealth() ?>
+                            health left.
                         <?php else: ?>
-                            overpowered and destroyed the <?php echo $battleResult->getLosingShip()->getName() ?>s
+                            overpowered and destroyed the <?php echo $battleResult->getLosingShip()->getName() ?>s and
+                            has
+                        <?php echo $battleResult->getWinningShipHealth() ?>
+                            health left.
                         <?php endif; ?>
                     <?php endif; ?>
                 </p>
