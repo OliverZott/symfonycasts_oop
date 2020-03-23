@@ -88,7 +88,7 @@ class Ship {
     }
 
     public function getStrength(): String {
-        return 16;
+        return $this->strength;
     }
 
     /* type check not necessary anymore (type hint forces error!)
