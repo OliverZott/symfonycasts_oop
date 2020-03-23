@@ -4,11 +4,11 @@ class BattleResult
 {
 
     private bool $usedJediPowers;
-    private  Ship $winningShip;  // null OR String
-    private  Ship $losingShip;  // null OR String
+    private $winningShip;  // null OR String
+    private $losingShip;  // null OR String
 
     // Data wrapper
-    public function __construct(bool $usedJediPowers, Ship $winningShip, Ship $losingShip)
+    public function __construct(bool $usedJediPowers, Ship $winningShip = null, Ship $losingShip = null)
     {
         $this->usedJediPowers = $usedJediPowers;
         $this->winningShip = $winningShip;
@@ -24,21 +24,34 @@ class BattleResult
     }
 
     /**
-     * @return Ship
+     * @return Ship / null
      */
-    public function getWinningShip(): Ship
+    public function getWinningShip()
     {
         return $this->winningShip;
     }
 
     /**
-     * @return Ship
+     * @return Ship / null
      */
-    public function getLosingShip(): Ship
+    public function getLosingShip()
     {
         return $this->losingShip;
     }
 
 
+    public function isThereAWinner()
+    {
+        return $this->winningShip !== null;
+    }
+
+
+    /**
+     * @return String
+     */
+    public function getWinningShipHealth()
+    {
+        return $this->winningShip->getStrength();
+    }
 
 }
