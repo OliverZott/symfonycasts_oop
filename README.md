@@ -48,6 +48,10 @@ Content - Course 2
 *  Create Class if **passing around associative array of data**
     * Class for return values of battle outcome
 
+* Objects are passed/called by **reference**! (Course 5)
+* Arrays / string passed to function pass a **copy**
+    * **&** ...possible to **call-by-reference** using `&$var` 
+
 
 
 
