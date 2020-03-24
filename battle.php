@@ -1,20 +1,39 @@
 <?php
 require __DIR__.'/functions.php';
 
+
+/* ====================================================================================================================
+ * Get all Ships from Database
+ */
 $shipLoader = new ShipLoader();
 $ships = $shipLoader->getShips();
 
+
+/* ====================================================================================================================
+ * Input from index.php
+ * (Ship-ID)
+ * (Error Messages)
+ *
+ */
 $ship1Id = isset($_POST['ship1_id']) ? $_POST['ship1_id'] : null;
 $ship1Quantity = isset($_POST['ship1_quantity']) ? $_POST['ship1_quantity'] : 1;
 $ship2Id = isset($_POST['ship2_id']) ? $_POST['ship2_id'] : null;
 $ship2Quantity = isset($_POST['ship2_quantity']) ? $_POST['ship2_quantity'] : 1;
+
+/*
+ * get Ship Objects
+ * (by ID from input)
+ */
+$ship1 = $shipLoader->getShipById($ship1Id);
+$ship2 = $shipLoader->getShipById($ship2Id);
+
 
 if (!$ship1Id || !$ship2Id) {
     header('Location: /index.php?error=missing_data');
     die;
 }
 
-if (!isset($ships[$ship1Id]) || !isset($ships[$ship2Id])) {
+if (!$ship1 || !$ship2) {
     header('Location: /index.php?error=bad_ships');
     die;
 }
@@ -24,15 +43,21 @@ if ($ship1Quantity <= 0 || $ship2Quantity <= 0) {
     die;
 }
 
-$ship1 = $ships[$ship1Id];
-$ship2 = $ships[$ship2Id];
 
-// var_dump($ship1, $ship2);die;
 
-$battle = new BattleManager();
+/* ====================================================================================================================
+ * Start battle (Battle Object)
+ * Get battle result (BattleResult Object)
+ *
+ */
+
 // "BattleManager"-object returns "BattleResult"-object
+$battle = new BattleManager();
+
+// "BattleResult" object provides functions to get winner etc.
 $battleResult = $battle->battle($ship1, $ship1Quantity, $ship2, $ship2Quantity);
-// due to
+
+
 ?>
 
 <html>
