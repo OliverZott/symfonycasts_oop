@@ -45,9 +45,15 @@ class BattleManager
             $ship2Health = $ship2Health - ($ship1->getWeaponPower() * $ship1Quantity);
         }
 
+
+        /* Pass remaining health to according Ship-Instance
+         *
+         * - since "battle" function hast Ship-Object as argument -> call-by-reference
+         *   so object-instance attribute can be changed here!
+         */
         $ship1->setStrength($ship1Health);
         $ship2->setStrength($ship2Health);
-        #var_dump($ship1Health, $ship2Health);die;
+
 
         if ($ship1Health <= 0 && $ship2Health <= 0) {
             // they destroyed each other
