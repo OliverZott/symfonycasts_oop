@@ -5,10 +5,17 @@ https://symfonycasts.com/screencast/oo
 Setup
 -----
 
-Start the built-in web server and open site
-
+Start local Apache web-server (stop first in case)
 ```bash
-cd /path/to/the/project
+sudo /etc/init.d/apach2 stop 
+
+sudo /opt/lampp/lampp start
+```
+
+Start the built-in web server and open site
+```bash
+cd /PhpstormProjects/symfonycasts_oop
+
 php -S localhost:8000
 ```
 
@@ -48,10 +55,13 @@ Content - Course 2
 *  Create Class if **passing around associative array of data**
     * Class for return values of battle outcome
 
-* Objects are passed/called by **reference**! (Course 5)
-* Arrays / string passed to function pass a **copy**
-    * **&** ...possible to **call-by-reference** using `&$var` 
+* Chapter 6: 
+    * Objects are passed/called by **reference**! (Course 5)
+    * Arrays / string passed to function pass a **copy**
+        * **&** ...possible to **call-by-reference** using `&$var` 
 
+* Chapter 7: 
+    * `@return Ship[]`   ...return value to ensure code-completion!!
 
 
 
