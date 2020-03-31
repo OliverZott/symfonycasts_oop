@@ -44,11 +44,12 @@ class Ship {
         }
     }
 
+    /* not used anymore ?!?!
     public function doesGivenShipHasMoreStrength($otherShip)
     {
         return $otherShip->weaponPower > $this->weaponPower ;
     }
-
+    */
 
     // -----------------------------------------------------------------------------------------------------------------
     // Setter and Getter Functions
