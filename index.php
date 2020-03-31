@@ -1,13 +1,23 @@
 <?php
 require __DIR__.'/functions.php';
 
-
+// usage of "private" implementation
+/*
 $container = new Container($configuration);
 $shipLoader = $container->getShipLoader();
+var_dump($container);
+$ships = $shipLoader->getShips();
+*/
 
+
+// usage of private static implementation
+new Container2($configuration);
+$shipLoader = Container2::getShipLoader();
+$battleManager = Container2::getBattleManager();
 $ships = $shipLoader->getShips();
 
-var_dump($container, $shipLoader);
+var_dump($shipLoader, $battleManager);
+
 
 $errorMessage = '';
 if (isset($_GET['error'])) {

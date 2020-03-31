@@ -4,17 +4,17 @@ require __DIR__.'/functions.php';
 
 $container = new Container($configuration);
 $shipLoader = $container->getShipLoader();
+$battleManager = $container->getBattleManager();
 
 $ships = $shipLoader->getShips();
 
 
-var_dump($container, $shipLoader);
+var_dump($container, $shipLoader, $battleManager);
 
 /* ====================================================================================================================
  * Input from index.php
  * (Ship-ID)
  * (Error Messages)
- *
  */
 $ship1Id = isset($_POST['ship1_id']) ? $_POST['ship1_id'] : null;
 $ship1Quantity = isset($_POST['ship1_quantity']) ? $_POST['ship1_quantity'] : 1;
@@ -47,16 +47,12 @@ if ($ship1Quantity <= 0 || $ship2Quantity <= 0) {
 
 
 /* ====================================================================================================================
- * Start battle (Battle Object)
+ * Start battle (BattleManager Object)
  * Get battle result (BattleResult Object)
- *
  */
 
-// "BattleManager"-object returns "BattleResult"-object
-$battle = new BattleManager();
-
 // "BattleResult" object provides functions to get winner etc.
-$battleResult = $battle->battle($ship1, $ship1Quantity, $ship2, $ship2Quantity);
+$battleResult = $battleManager->battle($ship1, $ship1Quantity, $ship2, $ship2Quantity);
 
 
 ?>

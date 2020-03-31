@@ -1,14 +1,13 @@
 <?php
 
 
-
 class Container
 {
 
     // Service-Objects
     private array $configuration;
     private $pdo = null;
-    private static $shipLoader = null;
+    private $shipLoader = null;
     private static $battleManager = null;
 
 
@@ -20,9 +19,8 @@ class Container
 
 
     /**
-     * Function getting / creating "PDO service-object"
+     * Function getting / creating "PDO" service-object
      * - ensuring only single pdo object exists
-     *
      * @return PDO
      */
     public function getPDO()
@@ -41,16 +39,32 @@ class Container
 
 
     /**
-     * Function getting / creating "ShipLoader service-object"
+     * Function getting / creating "ShipLoader" service-object
+     * - Singleton
      * @return ShipLoader
      */
     public function getShipLoader()
     {
-        if(self::$shipLoader === null)
+        if($this->shipLoader === null)
         {
-            self::$shipLoader = new ShipLoader($this->getPDO());
+            $this->shipLoader = new ShipLoader($this->getPDO());
         }
-        return self::$shipLoader;
+        return $this->shipLoader;
+    }
+
+
+    /**
+     * Function getting / creating "BattleManager" service-object
+     * - Singleton
+     * @return BattleManager|null
+     */
+    public function getBattleManager()
+    {
+        if (self::$battleManager === null)
+        {
+            self::$battleManager = new BattleManager();
+        }
+        return self::$battleManager;
     }
 
 }
