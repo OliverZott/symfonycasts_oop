@@ -1,10 +1,13 @@
 <?php
 require __DIR__.'/functions.php';
-# echo __DIR__;
 
-$shipLoader = new ShipLoader();
+
+$container = new Container($configuration);
+$shipLoader = $container->getShipLoader();
+
 $ships = $shipLoader->getShips();
-// var_dump($ships).die;
+
+var_dump($container, $shipLoader);
 
 $errorMessage = '';
 if (isset($_GET['error'])) {

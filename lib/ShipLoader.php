@@ -13,6 +13,25 @@
 class ShipLoader
 {
 
+    // service class-property
+    private PDO $pdo;
+
+
+
+    /**
+     * ShipLoader constructor.
+     *
+     * DEPENDENCY INJECTION
+     * - service object is passed (injected) to a service class!
+     * - configurable PDO service object is created outside of this service class!
+     *
+     * @param PDO $pdo
+     */
+    public function __construct(PDO $pdo)
+    {
+        $this->pdo = $pdo;
+    }
+
 
     /**
      * Get an array of all Ship-Objects in database
@@ -48,8 +67,7 @@ class ShipLoader
      */
     public function getShipById(int $id)
     {
-        $pdo = new PDO('mysql:host=localhost;dbname=oo_battle', 'root');
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $pdo = $this->getPDO();
 
         // prepare... normal query but prevents SQL injection attacks
         // https://stackoverflow.com/questions/60174/how-can-i-prevent-sql-injection-in-php
@@ -102,8 +120,7 @@ class ShipLoader
     {
 
 
-        $pdo = new PDO('mysql:host=localhost;dbname=oo_battle', 'root');
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $pdo = $this->getPDO();
         $statement = $pdo->prepare('SELECT * FROM ship');
         $statement->execute();
 
@@ -111,5 +128,14 @@ class ShipLoader
     }
 
 
+    /**
+     * Function to return PDO object only ONCE!
+     *
+     * @return PDO
+     */
+    private function getPDO()
+    {
+        return $this->pdo;
+    }
 
 }

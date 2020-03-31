@@ -2,12 +2,13 @@
 require __DIR__.'/functions.php';
 
 
-/* ====================================================================================================================
- * Get all Ships from Database
- */
-$shipLoader = new ShipLoader();
+$container = new Container($configuration);
+$shipLoader = $container->getShipLoader();
+
 $ships = $shipLoader->getShips();
 
+
+var_dump($container, $shipLoader);
 
 /* ====================================================================================================================
  * Input from index.php
