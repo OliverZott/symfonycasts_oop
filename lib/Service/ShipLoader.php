@@ -96,7 +96,13 @@ class ShipLoader
      */
     private function getShipFromData(array $shipFromDatabase)
     {
-        $ship = new Ship($shipFromDatabase['name']);
+
+        if ($shipFromDatabase['team'] == 'rebel'){
+            $ship = new RebelShip($shipFromDatabase['name']);
+        } else {
+            $ship = new Ship($shipFromDatabase['name']);
+        }
+
         $ship->setId($shipFromDatabase['id']);
         $ship->setWeaponPower($shipFromDatabase['weapon_power']);
         $ship->setJediPower($shipFromDatabase['jedi_factor']);

@@ -28,9 +28,13 @@ http://localhost:8000
 1. [OOP Basics](#basics)
 2. [Models, Services & Containers](#oop2)
    
-    i. [Models, Services & Containers](#oop2) \
-    ii. [Models, Services & Containers](#oop2) \
-    iii. [Models, Services & Containers](#oop2)
+    i. [Service Classes](#services) \
+    ii. [Fetching objects from db](#db) \
+    iii. [Single PDO / db connection](#pdo)  
+    iv. [Service Container](#servicecontainer)  
+    v. [Remarks - Dependency Injection](#remarks)   
+
+3. [Inheritance, Abstract Classes, Interfaces](#oop2)
 
 # OOP Basics <a name="basics"></a>
 
@@ -56,7 +60,7 @@ http://localhost:8000
 
 # Models, Services & Containers <a name="oop2"></a>
 
-## **Service Classes** 
+## **Service Classes** <a name="services"></a>
 (Chapter 1 -4; e.g. 'BattleManager')
 
 * **Service Class**: 
@@ -68,7 +72,7 @@ http://localhost:8000
 * Create Class if **passing around associative arrays of data**
     (e.g. Class for return values of battle outcome)
 
-## **Fetching objects from db** 
+## **Fetching objects from db** <a name="db"></a>
 
 
 * Objects are passed/called by **reference**! (Course 5)
@@ -78,7 +82,7 @@ http://localhost:8000
 * Get Object by **single ID from db** (chapter 7): 
     * `@return Ship[]`   ...return value to ensure code-completion!!
     
-## **Single PDO / db connection** 
+## **Single PDO / db connection** <a name="pdo"></a>
 
 
 * **Model Class - Properties**:
@@ -125,7 +129,7 @@ public function __construct(PDO $pdo)
 
 **Problem**: Code to create service object `new PDO()` is duplicated and complicated
 
-## Service  Container
+## Service  Container <a name="servicecontainer"></a>
 **GOAL**: Special Class to create service-objects 
 
 + Used **Service-Classes**:
@@ -143,7 +147,7 @@ https://en.wikipedia.org/wiki/Singleton_pattern
 
 
 
-## Remarks: DEPENDENCY-INJECTION-Container:
+## Remarks: DEPENDENCY-INJECTION-Container: <a name="remarks"></a>
 https://symfonycasts.com/screencast/oo-ep2/container-rescue#play
 
 **Model-Objects**: Hold data / don't do much work / created when-where ever needed
@@ -181,3 +185,9 @@ Benefits:
 ***Symfony / Composer***
 
 + Handle all **Dependency Injections** as well as all **Singletons**
+
+# Inheritance, Abstract Classes, Interfaces <a name="oop2"></a>
+
+## Inheritance `extends`
+## Override & Access-Modifiers
+

@@ -24,25 +24,35 @@ class Ship {
 
     public function getNameAndSpecs($useShortFormat = false)
     {
+
         if ($useShortFormat) {
             return sprintf(
-                '%s: %s/%s/%s',
+                '%s: %s/%s/%s/%s',
                 $this->name,
                 $this->weaponPower,
                 $this->jediPower,
                 $this->strength,
+                $this->getType(),
             );
         }
         else {
             return sprintf(
-                '%s: w:%s, j:%s, s:%s',
+                '%s: w:%s, j:%s, s:%s, t:%s',
                 $this->name,
                 $this->weaponPower,
                 $this->jediPower,
                 $this->strength,
+                $this->getType(),
             );
         }
     }
+
+    private function getSecretDoorCodeToTheDeathStar()
+    {
+        return 'rainb0ws';
+    }
+
+
 
     /* not used anymore ?!?!
     public function doesGivenShipHasMoreStrength($otherShip)
@@ -120,6 +130,13 @@ class Ship {
         $this->id = $id;
     }
 
+    /**
+     * @return string
+     */
+    public function getType(): string
+    {
+        return 'Empire';
+    }
 
 }
 
