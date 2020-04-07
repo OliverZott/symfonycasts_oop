@@ -17,6 +17,10 @@ $battleManager = Container2::getBattleManager();
 $ships = $shipLoader->getShips();
 
 
+// Broken Ship added:
+$brokenShip = new BrokenShip('Broken Ship');
+$ships[] = $brokenShip;
+
 $errorMessage = '';
 if (isset($_GET['error'])) {
     switch ($_GET['error']) {
@@ -83,7 +87,7 @@ if (isset($_GET['error'])) {
                         <tr>
                             <td><?php echo $ship->getName(); ?></td>
                             <td><?php echo $ship->getWeaponPower(); ?></td>
-                            <td><?php echo $ship->getJediPower(); ?></td>
+                            <td><?php echo $ship->getJediFactor(); ?></td>
                             <td><?php echo $ship->getStrength(); ?></td>
                             <td>
                                 <?php if ($ship->isFunctional()): ?>

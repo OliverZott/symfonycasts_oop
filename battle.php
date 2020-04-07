@@ -11,6 +11,7 @@ $ships = $shipLoader->getShips();
 
 var_dump($container, $shipLoader, $battleManager);
 
+
 /* ====================================================================================================================
  * Input from index.php
  * (Ship-ID)
@@ -27,7 +28,7 @@ $ship2Quantity = isset($_POST['ship2_quantity']) ? $_POST['ship2_quantity'] : 1;
  */
 $ship1 = $shipLoader->getShipById($ship1Id);
 $ship2 = $shipLoader->getShipById($ship2Id);
-
+var_dump($ship1, $ship2);
 
 if (!$ship1Id || !$ship2Id) {
     header('Location: /index.php?error=missing_data');

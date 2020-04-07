@@ -41,7 +41,7 @@ class ShipLoader
      * - generate Ship Object from Database array (Ship)
      * - store all Ship objects in an array (array if Ships)
      *
-     * @return Ship[]
+     * @return AbstractShip[]
      * @throws Exception
      */
     public function getShips()
@@ -62,7 +62,7 @@ class ShipLoader
 
     /**
      * @param int $id
-     * @return Ship|null
+     * @return AbstractShip|null
      * @throws Exception
      */
     public function getShipById(int $id)
@@ -91,7 +91,7 @@ class ShipLoader
      * Converts array-object (from database) to Ship-Object
      *
      * @param array
-     * @return Ship
+     * @return AbstractShip
      * @throws Exception
      */
     private function getShipFromData(array $shipFromDatabase)
@@ -101,11 +101,12 @@ class ShipLoader
             $ship = new RebelShip($shipFromDatabase['name']);
         } else {
             $ship = new Ship($shipFromDatabase['name']);
+            $ship->setJediFactor($shipFromDatabase['jedi_factor']);
+
         }
 
         $ship->setId($shipFromDatabase['id']);
         $ship->setWeaponPower($shipFromDatabase['weapon_power']);
-        $ship->setJediPower($shipFromDatabase['jedi_factor']);
         $ship->setStrength($shipFromDatabase['strength']);
 
         return $ship;

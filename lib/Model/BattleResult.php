@@ -8,7 +8,7 @@ class BattleResult
     private $losingShip;  // null OR String
 
     // Data wrapper
-    public function __construct(bool $usedJediPowers, Ship $winningShip = null, Ship $losingShip = null)
+    public function __construct(bool $usedJediPowers, AbstractShip $winningShip = null, AbstractShip $losingShip = null)
     {
         $this->usedJediPowers = $usedJediPowers;
         $this->winningShip = $winningShip;
