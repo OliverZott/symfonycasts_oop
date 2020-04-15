@@ -8,6 +8,7 @@ class Container2
     private static array $configuration;
     private static $pdo = null;
     private static $shipLoader = null;
+    private static $shipStorage = null;
     private static $battleManager = null;
 
 
@@ -47,11 +48,21 @@ class Container2
     {
         if(self::$shipLoader === null)
         {
-            self::$shipLoader = new ShipLoader(self::getPDO());
+            self::$shipLoader = new ShipLoader(self::getShipStorage());
         }
         return self::$shipLoader;
     }
 
+
+    public static function getShipStorage()
+    {
+        if(self::$shipStorage === null)
+        {
+            self::$shipStorage = new PdoShipStorage(self::getPdo());
+        }
+        return self::$shipStorage;
+
+    }
 
     /**
      * Function getting / creating "BattleManager" service-object

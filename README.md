@@ -188,6 +188,25 @@ Benefits:
 
 # Inheritance, Abstract Classes, Interfaces <a name="oop2"></a>
 
-## Inheritance `extends`
+## Inheritance 
+`extends`
+
 ## Override & Access-Modifiers
+public, protected, private  (compare scopes)
+
+## Abstract Classes
+Cannot be instantiated
+
+## Interfaces
+Abstract vs. Interfaces
++ AbstractShip.php contains **logic**
++ AbstractShipStorage only **ensures specific functions**  
++ Classes can implement many interfaces, but can only extend one class
++ Abstract classes CAN contain concrete methods, interfaces CANNOT
++ Interfaces AND Abstract classes FORCE to implement the methods
+
+If no logic --> use **Interface**
+
++ Interface flexibility especially for reusable **libraries**
++ in most projects maybe no use for interfaces ?!
 

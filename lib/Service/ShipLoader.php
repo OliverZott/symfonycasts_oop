@@ -1,12 +1,9 @@
 <?php
 /**
  * Class ShipLoader
- *
  * Service Class to create Array of Ships
- *
  * - Course 2 - Chapter 6, 7
  * - USE id instead of ship-name in index.php
- *
  */
 
 
@@ -14,22 +11,19 @@ class ShipLoader
 {
 
     // service class-property
-    private PDO $pdo;
-
-
+    private AbstractShipInterface $shipStorage;
 
     /**
-     * ShipLoader constructor.
+     * ShipLoader constructor  -->  DEPENDENCY INJECTION
      *
-     * DEPENDENCY INJECTION
      * - service object is passed (injected) to a service class!
      * - configurable PDO service object is created outside of this service class!
      *
-     * @param PDO $pdo
+     * @param AbstractShipInterface $shipStorage
      */
-    public function __construct(PDO $pdo)
+    public function __construct(AbstractShipInterface $shipStorage)
     {
-        $this->pdo = $pdo;
+        $this->shipStorage = $shipStorage;
     }
 
 
@@ -46,7 +40,7 @@ class ShipLoader
      */
     public function getShips()
     {
-        $shipsFromDatabase = $this->queryForShips();
+        $shipsFromDatabase = $this->shipStorage->fetchAllShipsData();
 
         $ships = array();
 
@@ -67,19 +61,7 @@ class ShipLoader
      */
     public function getShipById(int $id)
     {
-        $pdo = $this->getPDO();
-
-        // prepare... normal query but prevents SQL injection attacks
-        // https://stackoverflow.com/questions/60174/how-can-i-prevent-sql-injection-in-php
-
-        $statement = $pdo->prepare('SELECT * FROM ship WHERE id = :id');
-        $statement->execute(array('id' => $id));
-        $shipArray = $statement->fetch(PDO::FETCH_ASSOC);
-
-        if (!$shipArray)
-        {
-            return null;
-        }
+        $shipArray = $this->shipStorage->fetchSingleShipData($id);
 
         return $this->getShipFromData($shipArray);
     }
@@ -111,38 +93,4 @@ class ShipLoader
 
         return $ship;
     }
-
-
-    /**
-     * Use Database for ShipLoader!
-     * (Course 2 - Chapter 6)
-     *
-     * Idea: use "small private function" to have:
-     *  - a proper name for code parts
-     *  - easier reuse and maintain code
-     *
-     * @return array
-     */
-    private function queryForShips()
-    {
-
-
-        $pdo = $this->getPDO();
-        $statement = $pdo->prepare('SELECT * FROM ship');
-        $statement->execute();
-
-        return $statement->fetchAll(PDO::FETCH_ASSOC);
-    }
-
-
-    /**
-     * Function to return PDO object only ONCE!
-     *
-     * @return PDO
-     */
-    private function getPDO()
-    {
-        return $this->pdo;
-    }
-
 }
