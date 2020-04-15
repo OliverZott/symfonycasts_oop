@@ -210,3 +210,16 @@ If no logic --> use **Interface**
 + Interface flexibility especially for reusable **libraries**
 + in most projects maybe no use for interfaces ?!
 
+
+## Constants
+Use CONSTANTS if variable:
++ never change
++ has special meaning
++ is used multiple times?
++ is used from outside of the class?
++ If someone makes a minor typo, will the result be drastically different?
++ Is it important for us to have a list of all of these possible values in one spot
+
+Advantage:
++ put variable into context (class related)
++ centralized (if change -> only once)

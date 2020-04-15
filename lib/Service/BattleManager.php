@@ -9,17 +9,21 @@
 class BattleManager
 {
 
+    public const TYPE_NORMAL = 'normal';
+    public const TYPE_NO_JEDI = 'no_jedi';
+    public const TYPE_ONLY_JEDI = 'only_jedi';
+
     /**
      * Fighting algorithm:
      *
-     * @param Ship $ship1
+     * @param AbstractShip $ship1
      * @param $ship1Quantity
-     * @param Ship $ship2
+     * @param AbstractShip $ship2
      * @param $ship2Quantity
      * @return BattleResult
      * @throws Exception
      */
-    public function battle(AbstractShip $ship1, $ship1Quantity, AbstractShip $ship2, $ship2Quantity) {
+    public function battle(AbstractShip $ship1, $ship1Quantity, AbstractShip $ship2, $ship2Quantity, $battletype) {
         $ship1Health = $ship1->getStrength() * $ship1Quantity;
         $ship2Health = $ship2->getStrength() * $ship2Quantity;
 
@@ -27,13 +31,13 @@ class BattleManager
         $ship2UsedJediPowers = false;
         while ($ship1Health > 0 && $ship2Health > 0) {
             // first, see if we have a rare Jedi hero event!
-            if ($this->didJediDestroyShipUsingTheForce($ship1)) {
+            if ($battletype != BattleManager::TYPE_NO_JEDI && $this->didJediDestroyShipUsingTheForce($ship1)) {
                 $ship2Health = 0;
                 $ship1UsedJediPowers = true;
 
                 break;
             }
-            if ($this->didJediDestroyShipUsingTheForce($ship2)) {
+            if ($battletype != self::TYPE_NO_JEDI && $this->didJediDestroyShipUsingTheForce($ship2)) {
                 $ship1Health = 0;
                 $ship2UsedJediPowers = true;
 
@@ -41,8 +45,10 @@ class BattleManager
             }
 
             // now battle them normally
-            $ship1Health = $ship1Health - ($ship2->getWeaponPower() * $ship2Quantity);
-            $ship2Health = $ship2Health - ($ship1->getWeaponPower() * $ship1Quantity);
+            if ($battletype != self::TYPE_ONLY_JEDI) {
+                $ship1Health = $ship1Health - ($ship2->getWeaponPower() * $ship2Quantity);
+                $ship2Health = $ship2Health - ($ship1->getWeaponPower() * $ship1Quantity);
+            }
         }
 
 

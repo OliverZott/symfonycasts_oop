@@ -9,7 +9,7 @@ $battleManager = $container->getBattleManager();
 $ships = $shipLoader->getShips();
 
 
-var_dump($container, $shipLoader, $battleManager);
+// var_dump($container, $shipLoader, $battleManager);
 
 
 /* ====================================================================================================================
@@ -28,7 +28,7 @@ $ship2Quantity = isset($_POST['ship2_quantity']) ? $_POST['ship2_quantity'] : 1;
  */
 $ship1 = $shipLoader->getShipById($ship1Id);
 $ship2 = $shipLoader->getShipById($ship2Id);
-var_dump($ship1, $ship2);
+// var_dump($ship1, $ship2);
 
 if (!$ship1Id || !$ship2Id) {
     header('Location: /index.php?error=missing_data');
@@ -52,8 +52,11 @@ if ($ship1Quantity <= 0 || $ship2Quantity <= 0) {
  * Get battle result (BattleResult Object)
  */
 
+// added to choose battle_type
+$battleType = $_POST['battle_type'];
+
 // "BattleResult" object provides functions to get winner etc.
-$battleResult = $battleManager->battle($ship1, $ship1Quantity, $ship2, $ship2Quantity);
+$battleResult = $battleManager->battle($ship1, $ship1Quantity, $ship2, $ship2Quantity, $battleType);
 
 
 ?>
