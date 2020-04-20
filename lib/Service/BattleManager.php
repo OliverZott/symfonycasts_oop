@@ -20,6 +20,7 @@ class BattleManager
      * @param $ship1Quantity
      * @param AbstractShip $ship2
      * @param $ship2Quantity
+     * @param $battletype
      * @return BattleResult
      * @throws Exception
      */
@@ -88,11 +89,21 @@ class BattleManager
     }
 
 
+    public static function getAllBattleTypesWithDescription()
+    {
+        return array(
+            self::TYPE_NORMAL => 'Normal',
+            self::TYPE_NO_JEDI => 'No Jedi Powers',
+            self::TYPE_ONLY_JEDI => 'Only Jedi Powers',
+        );
+    }
+
+
     /**
      * private cause only used inside this class (battle function) !!!
      * (So you know it's only used in this class -> can't break stuff outside class)
      *
-     * @param Ship $ship
+     * @param AbstractShip $ship
      * @return bool
      */
     private function didJediDestroyShipUsingTheForce(AbstractShip $ship)
