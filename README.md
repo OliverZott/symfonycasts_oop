@@ -34,7 +34,15 @@ http://localhost:8000
     iv. [Service Container](#servicecontainer)  
     v. [Remarks - Dependency Injection](#remarks)   
 
-3. [Inheritance, Abstract Classes, Interfaces](#oop2)
+3. [Inheritance, Abstract Classes, Interfaces](#oop3)
+
+4. [Static methods, Namespaces, Exceptions & Traits](#oop4)
+
+    i. [Constants](#const) \
+    ii. [Static](#static) \
+    iii. [](#pdo)  
+    iv. [](#servicecontainer)  
+    v. [](#remarks)   
 
 # OOP Basics <a name="basics"></a>
 
@@ -186,7 +194,7 @@ Benefits:
 
 + Handle all **Dependency Injections** as well as all **Singletons**
 
-# Inheritance, Abstract Classes, Interfaces <a name="oop2"></a>
+# Inheritance, Abstract Classes, Interfaces <a name="oop3"></a>
 
 ## Inheritance 
 `extends`
@@ -198,7 +206,7 @@ public, protected, private  (compare scopes)
 Cannot be instantiated
 
 ## Interfaces
-Abstract vs. Interfaces
+Abstract vs. Interfaces 
 + AbstractShip.php contains **logic**
 + AbstractShipStorage only **ensures specific functions**  
 + Classes can implement many interfaces, but can only extend one class
@@ -210,8 +218,11 @@ If no logic --> use **Interface**
 + Interface flexibility especially for reusable **libraries**
 + in most projects maybe no use for interfaces ?!
 
+# Static methods, Namespaces, Exceptions & Traits <a name="oop4"></a>
 
-## Constants
+## Constants <a name="const"></a>
++ Constants are **static** --> No object instantiation needed, only `Classname::` or `self::`    
+
 Use CONSTANTS if variable:
 + never change
 + has special meaning
@@ -223,3 +234,12 @@ Use CONSTANTS if variable:
 Advantage:
 + put variable into context (class related)
 + centralized (if change -> only once)
+
+Example:
++ `public const ...` in *BattleManager.php* and **
+
+## Static <a name="static"></a>
+Use static methods for "global" function which doesn't depend on instances.
+
+Example:
++ `public static function getAllBattleTypesWithDescription() {...` in *BattleManager.php* and *index.php*
