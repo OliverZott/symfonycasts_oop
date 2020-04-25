@@ -5,6 +5,7 @@
  * Service CLasses !!!
  */
 
+namespace   Battle;
 
 class BattleManager
 {

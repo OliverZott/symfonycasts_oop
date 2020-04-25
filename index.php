@@ -1,4 +1,7 @@
 <?php
+
+//use Battle\BattleManager;
+
 require __DIR__.'/functions.php';
 
 // usage of "private" implementation
@@ -22,7 +25,7 @@ $brokenShip = new BrokenShip('Broken Ship');
 $ships[] = $brokenShip;
 
 // Use battleTypes from BattleManager:
-$battleTypes = BattleManager::getAllBattleTypesWithDescription();
+$battleTypes = Battle\BattleManager::getAllBattleTypesWithDescription();
 // var_dump($battleTypes);
 
 

@@ -243,3 +243,10 @@ Use static methods for "global" function which doesn't depend on instances.
 
 Example:
 + `public static function getAllBattleTypesWithDescription() {...` in *BattleManager.php* and *index.php*
+
+## Namespaces
+Add [Namespace](https://symfonycasts.com/screencast/oo-ep4/namespaces-make-class-names-longer) in `BattleManager.php`
+
++ **IMPORTANT**: If `namespace` in class used --> have to import every other class / interface via `use` statement.
++ You need to include the namespace **AND** the class name:
+
